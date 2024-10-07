@@ -1,0 +1,58 @@
+.row {
+    max-width: $grid-width;
+    // background-color: #6b8de9dc; 
+    margin: 0 auto; //This make block come at center (we use it for block)
+
+    &:not(:last-child) { //It says every element in row block should have margin-buttom except last element
+        margin-bottom: $vertical-gap;
+    }
+
+    @include respond (tab-port) {
+        max-width: 55rem;
+        padding: 0 3rem
+    }
+
+    @include clearfix; //Elements after a floating element will flow around it. Use the "clearfix" hack to fix the problem
+    [class^="col-"]{ //Every sub-class in row that name of class start with(^) col-
+        // background-color: #6be9e9dc;
+        float: left;
+
+        &:not(:last-child) {
+            margin-right: $horizontal-gap;
+
+            @include respond (tab-port) {
+                margin-right: 0;
+                margin-bottom: $vertical-gap;
+            }
+        }
+
+        @include respond (tab-port) {
+            width: 100% !important;
+        }
+    }
+    .col-1-of-2 {
+        width: calc((100% - #{$horizontal-gap})/2);
+        
+    }
+
+    .col-1-of-3 {
+        width: calc((100% - 2*#{$horizontal-gap})/3);
+    }
+
+    .col-1-of-4 {
+        width: calc((100% - 3*#{$horizontal-gap})/4);
+    }
+
+    .col-2-of-3 {
+        width: calc(2*((100% - 2*#{$horizontal-gap})/3) + #{$horizontal-gap});
+    }
+
+    .col-2-of-4 {
+        width: calc(2*((100% - 3*#{$horizontal-gap})/4) + #{$horizontal-gap});
+    }
+
+    .col-3-of-4 {
+        width: calc(3*((100% - 3*#{$horizontal-gap})/4) + 2*#{$horizontal-gap});
+    }
+
+}
